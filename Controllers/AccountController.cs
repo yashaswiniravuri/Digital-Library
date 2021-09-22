@@ -17,9 +17,9 @@ namespace Library.Controllers
     {
         private ApplicationSignInManager _signInManager;
         private ApplicationUserManager _userManager;
-
-        public AccountController()
-        {
+        ApplicationDbContext context;
+        public AccountController(){
+            context = new ApplicationDbContext();
         }
 
         public AccountController(ApplicationUserManager userManager, ApplicationSignInManager signInManager )
@@ -136,9 +136,11 @@ namespace Library.Controllers
 
         //
         // GET: /Account/Register
+
         [AllowAnonymous]
         public ActionResult Register()
         {
+            ViewBag.Name = new SelectList(context.Roles.ToList(), "Name", "Name");
             return View();
         }
 
@@ -155,6 +157,7 @@ namespace Library.Controllers
                 var result = await UserManager.CreateAsync(user, model.Password);
                 if (result.Succeeded)
                 {
+                    await this.UserManager.AddToRoleAsync(user.Id, model.Name);
                     await SignInManager.SignInAsync(user, isPersistent:false, rememberBrowser:false);
                     
                     // For more information on how to enable account confirmation and password reset please visit https://go.microsoft.com/fwlink/?LinkID=320771
@@ -403,6 +406,7 @@ namespace Library.Controllers
             return View();
         }
 
+        
         protected override void Dispose(bool disposing)
         {
             if (disposing)

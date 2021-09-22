@@ -321,7 +321,6 @@ namespace Library.Controllers
             var result = await UserManager.AddLoginAsync(User.Identity.GetUserId(), loginInfo.Login);
             return result.Succeeded ? RedirectToAction("ManageLogins") : RedirectToAction("ManageLogins", new { Message = ManageMessageId.Error });
         }
-
         protected override void Dispose(bool disposing)
         {
             if (disposing && _userManager != null)
