@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Library.Data.Service;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -8,14 +9,23 @@ namespace Library.Controllers
 {
     public class HomeController : Controller
     {
+         BookData db;
+        public HomeController()
+        {
+            db = new InMemoryBookData();
+
+        }
         public ActionResult Index()
         {
-            return View();
+            var model = db.GetAll();
+            return View(model);
         }
 
         public ActionResult About()
         {
             ViewBag.Message = "Your application description page.";
+            
+
 
             return View();
         }

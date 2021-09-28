@@ -1,0 +1,38 @@
+﻿@model IEnumerable<Library.Data.Models.Books>
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Books At Your DoorStep!</h2>
+<div>
+    There are @Model.Count() books available!!
+</div>
+
+<table border="1">
+
+
+
+    <tr>
+        <th>Book_Id</th>
+        <th>Book_Name</th>
+        <th>Author Name</th>
+        <th>Librarian Name</th>
+        <th>Genre</th>
+    </tr>
+    @foreach (var books in Model)
+    {
+        <tr>
+            <td>@books.Book_id</td>
+            <td>@books.Book_Name</td>
+            <td>@books.Author_Name</td>
+            <td>@books.Librarian</td>
+            <td>@books.genre</td>
+        </tr>
+
+     }
+
+    }
+</table>
+
+
+
