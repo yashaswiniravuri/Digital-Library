@@ -1,0 +1,25 @@
+﻿@model IEnumerable<Library.Models.Books.LibraryBook>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>
+    Index
+</h2>
+
+
+@{ var grid = new WebGrid(Model, canPage: false);}
+<div>
+
+    @grid.GetHtml(tableStyle: "table table-bordered table-responsive table-hover",
+    columns: grid.Columns(
+
+         grid.Column("Name", "Name"),
+         grid.Column("Author", "Author"),
+         grid.Column("Genre", "Genre"),
+         grid.Column( "Copies", "No.of Copies"),
+         grid.Column("Description", "Description")
+    )
+    )
+</div>
