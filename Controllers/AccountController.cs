@@ -136,7 +136,6 @@ namespace Library.Controllers
 
         //
         // GET: /Account/Register
-
         [AllowAnonymous]
         public ActionResult Register()
         {
@@ -258,8 +257,7 @@ namespace Library.Controllers
                 return RedirectToAction("ResetPasswordConfirmation", "Account");
             }
             var result = await UserManager.ResetPasswordAsync(user.Id, model.Code, model.Password);
-            if (result.Succeeded)
-            {
+            if (result.Succeeded){
                 return RedirectToAction("ResetPasswordConfirmation", "Account");
             }
             AddErrors(result);
