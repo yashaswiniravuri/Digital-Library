@@ -13,7 +13,6 @@ namespace Library.Models.Books
         }
 
         public virtual DbSet<LibraryBook> LibraryBooks { get; set; }
-
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
             modelBuilder.Entity<LibraryBook>()

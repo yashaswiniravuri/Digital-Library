@@ -5,19 +5,20 @@ using System.Web;
 using System.Web.Mvc;
 using Library.Models;
 using Library.Models.Books;
+using Microsoft.AspNet.Identity;
 
 namespace Library.Controllers.Books
 {
+    
     public class BooksMenuController : Controller
     {
         // GET: BooksMenu
-        SqlBooksData sqlBooksData;
+       SqlBooksData sqlBooksData;
         public BooksMenuController()
         {
             BooksModel bm = new BooksModel();
             sqlBooksData = new SqlBooksData(bm);
         }
-
         [HttpGet]
         [Authorize(Roles = "Member")]
         public ActionResult Index()
@@ -35,6 +36,7 @@ namespace Library.Controllers.Books
         [HttpGet]
         public ActionResult Create()
         {
+            
             return View();
         }
         [Authorize(Roles ="Librarian")]
@@ -42,8 +44,8 @@ namespace Library.Controllers.Books
         [ValidateAntiForgeryToken]
         public ActionResult Create(LibraryBook books)
         {
-            //get user id from asp.net users
 
+            //get user id from asp.net users
             if (ModelState.IsValid)
             {
                 sqlBooksData.Add(books);

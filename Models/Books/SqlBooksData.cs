@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Data.Entity;
 using System.Linq;
 using System.Web;
+using Microsoft.AspNet.Identity;
 
 namespace Library.Models.Books
 {
@@ -17,6 +18,7 @@ namespace Library.Models.Books
 
         public void Add(LibraryBook MyBooks)
         {
+            MyBooks.Lib_Id=System.Web.HttpContext.Current.User.Identity.GetUserId();
             db.LibraryBooks.Add(MyBooks);
             db.SaveChanges();
         }
@@ -40,6 +42,7 @@ namespace Library.Models.Books
 
         public void Update(LibraryBook b)
         {
+            b.Lib_Id = System.Web.HttpContext.Current.User.Identity.GetUserId();
             var entry = db.Entry(b);
             entry.State = EntityState.Modified;
             db.SaveChanges();

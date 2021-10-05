@@ -13,8 +13,6 @@ namespace Library.Models.Books
 
         [StringLength(50)]
         public string Name { get; set; }
-
-        [Required]
         [StringLength(128)]
         public string Lib_Id { get; set; }
 
