@@ -1,25 +1,29 @@
-﻿@model IEnumerable<Library.Models.Books.LibraryBook>
+﻿@model IEnumerable<Library.Models.BookOrders.LibraryBook>
 
 @{
-    ViewBag.Title = "Index";
+    ViewBag.Title = "Gallery";
 }
 
 <h2>
-    Index
+    Books Gallery
 </h2>
-
-
-@{ var grid = new WebGrid(Model, canPage: false);}
 <div>
+    <table class="table table-bordered table-responsive table-hover" id="tblEmployee">
+        <tr>
+            <th>Book</th>
+            <th>Details</th>
+        </tr>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Name)
+                </td>
+                <td>
+                    @Html.ActionLink("Explore", "Details", new { id = item.Book_Id })
+                </td>
+            </tr>
+        }
 
-    @grid.GetHtml(tableStyle: "table table-bordered table-responsive table-hover",
-    columns: grid.Columns(
-
-         grid.Column("Name", "Name"),
-         grid.Column("Author", "Author"),
-         grid.Column("Genre", "Genre"),
-         grid.Column( "Copies", "No.of Copies"),
-         grid.Column("Description", "Description")
-    )
-    )
+    </table>
 </div>

@@ -2,7 +2,6 @@
 using System.Data.Entity;
 using System.Security.Claims;
 using System.Threading.Tasks;
-using Library.Models.Books;
 using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.EntityFramework;
 

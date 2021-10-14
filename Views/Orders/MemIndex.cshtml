@@ -1,0 +1,48 @@
+﻿@model IEnumerable<Library.Models.BookOrders.Order>
+@{
+    ViewBag.Title = "MemIndex";
+}
+
+<h2>Cart</h2>
+
+<div>
+    <table class="table table-bordered table-responsive table-hover" id="tblEmployee">
+        <tr>
+            <th>Book</th>
+            <th>Author</th>
+            <th>Librarian</th>
+            <th>Borrow Date</th>
+            <th>Due Date</th>
+            <th>Status</th>
+            <th></th>
+        </tr>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.LibraryBook.Name)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.LibraryBook.Author)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.AspNetUser.UserName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Borrow_Date)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Due_Date)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Status)
+                </td>
+                <td>
+                    @Html.ActionLink("Remove item", "Delete", new { id = item.Book_Id })
+                </td>
+            </tr>
+        }
+
+    </table>
+</div>
+

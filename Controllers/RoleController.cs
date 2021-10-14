@@ -15,29 +15,40 @@ namespace Library.Controllers
         {
             context = new ApplicationDbContext();
         }
-       
-        // GET all Roles
-        public ActionResult Index()
-        {
-            var Roles = context.Roles.ToList();
-            return View(Roles);
-        }
+
         //create a new role
         //Role creation is done using IdentityRole class.
         //This class provides properties e.g.Id, Name, etc for creating roles for the applications.
         //Scaffold the Index and Create view, using Index and Create Action method from the RoleController class.
 
-
+        //http post
+          /// </summary>
+        /// <returns></returns>
+        public ActionResult Index()
+        {
+            var Roles = context.Roles.ToList();
+            return View(Roles);
+        }
+ 
+        /// <summary>
+        /// Create  a New role
+        /// </summary>
+        /// <returns></returns>
         public ActionResult Create()
         {
             var Role = new IdentityRole();
             return View(Role);
         }
-        //http post
+ 
+        /// <summary>
+        /// Create a New Role
+        /// </summary>
+        /// <param name="Role"></param>
+        /// <returns></returns>
         [HttpPost]
-        public ActionResult Create(IdentityRole role)
+        public ActionResult Create(IdentityRole Role)
         {
-            context.Roles.Add(role);
+            context.Roles.Add(Role);
             context.SaveChanges();
             return RedirectToAction("Index");
         }
