@@ -16,6 +16,9 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
                 </button>
                 @Html.ActionLink("Books At Your Door Step", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
             </div>
@@ -29,10 +32,11 @@
                     {
                         <li>@Html.ActionLink("Upload Books", "Create", "BooksMenu")</li>
                         <li>@Html.ActionLink("Librarian Orders", "LibIndex", "Orders")</li>
+                        <li>@Html.ActionLink("Gallery", "LibIndex", "BooksMenu")</li>
                     }
                     @if (User.IsInRole("Member"))
                     {
-                        <li>@Html.ActionLink("Members Gallery", "Index", "BooksMenu")</li>
+                        <li>@Html.ActionLink("Books Gallery", "Index", "BooksMenu")</li>
                         <li>@Html.ActionLink("Cart", "MemIndex", "Orders")</li>
                     }
 

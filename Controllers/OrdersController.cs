@@ -13,12 +13,16 @@ namespace Library.Controllers
     {
         BooksData Books;
         OrdersData Orders;
+        UserData Users;
         public OrdersController()
         {
             BooksOrder bo = new BooksOrder();
             Orders = new OrdersData(bo);
             Books = new BooksData(bo);
+            Users = new UserData(bo);
         }
+
+
         [Authorize(Roles = "Librarian")]
         public ActionResult LibIndex()
         {
@@ -26,6 +30,8 @@ namespace Library.Controllers
             var model = Orders.GetAllLibOrders(libid);
             return View(model);
         }
+
+
         [Authorize(Roles = "Member")]
         public ActionResult MemIndex()
         {
@@ -33,6 +39,8 @@ namespace Library.Controllers
             var model = Orders.GetAllMemOrders(Member_id);
             return View(model);
         }
+
+
         [Authorize(Roles = "Member")]
         public ActionResult Create(int id,Order order)
         {
@@ -40,15 +48,58 @@ namespace Library.Controllers
             Orders.Add(book.Lib_Id, book.Book_Id, order);
             return RedirectToAction("MemIndex");
         }
+     
+
         [Authorize(Roles = "Member")]
-        public ActionResult Delete()
+        public ActionResult Delete(int id)
         {
-            return View();
+            Orders.Delete(id);
+            return RedirectToAction("MemIndex");
         }
-        [Authorize(Roles = "Librarian")]
-        public ActionResult Update()
+
+
+        public ActionResult Borrow(int id)
         {
-            return View();
+            Orders.Borrow(Orders.Get(id));
+            return RedirectToAction("MemIndex");
+        }
+
+
+        public ActionResult Return(int id)
+        {
+            Orders.Return(Orders.Get(id));
+            return RedirectToAction("MemIndex");
+        }
+
+
+        public ActionResult Details(int id){
+            var model = Books.Get(id);
+            return View(model);
+        }
+
+
+        [HttpGet]
+        [Authorize(Roles = "Librarian")]
+        public ActionResult Update(int id)
+        {
+            var model = Books.Get(id);
+            if (model == null)
+            {
+                return HttpNotFound();
+            }
+            return View(model);
+        }
+        [HttpPost]
+        [Authorize(Roles = "Librarian")]
+        [ValidateAntiForgeryToken]
+        public ActionResult Update(LibraryBook book)
+        {
+            if (ModelState.IsValid)
+            {
+                Books.Update(book);
+                return RedirectToAction("LibIndex");
+            }
+            return View(book);
         }
     }
 }

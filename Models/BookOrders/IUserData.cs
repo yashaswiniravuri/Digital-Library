@@ -23,7 +23,6 @@ namespace Library.Models.BookOrders
         {
             return db.AspNetUsers.FirstOrDefault(r => r.Id==id);
         }
-
         public IEnumerable<AspNetUser> GetAll()
         {
             return db.AspNetUsers;

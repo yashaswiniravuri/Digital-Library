@@ -25,10 +25,10 @@
             @Html.ActionLink("Explore", "Details", new { id = item.Book_Id })
         </td>
         <td>
-            @Html.ActionLink("Remove", "Delete", new { id = item.Book_Id })
+            @Html.ActionLink("Delete", "Delete", new { id = item.Book_Id })
         </td>
-        <td>
-            @Html.ActionLink("Update", "Update", new { id = item.Book_Id })
+         <td>
+            @Html.ActionLink("Update", "Edit", new { id = item.Book_Id })
         </td>
     </tr>
         }

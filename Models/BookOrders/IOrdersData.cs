@@ -14,7 +14,8 @@ namespace Library.Models.BookOrders
         IEnumerable<Order> GetAllLibOrders(string libid);
         Order Get(int id);
         void Add(string lib,int bid, Order MyOrder);
-        void Update(Order o);
+        void Borrow(Order o);
+        void Return(Order o);
         void Delete(int id);
     }
     public class OrdersData : IOrdersData
@@ -31,7 +32,7 @@ namespace Library.Models.BookOrders
             MyOrder.Librarian_Id=lib;
             MyOrder.Borrow_Date = DateTime.Today;
             MyOrder.Due_Date = DateTime.Today.AddDays(15);
-            MyOrder.Status = null;
+            MyOrder.Status=StatusType.To_be_borrowed;
             db.Orders.Add(MyOrder);
             db.SaveChanges();
         }
@@ -45,7 +46,7 @@ namespace Library.Models.BookOrders
 
         public Order Get(int id)
         {
-            return db.Orders.FirstOrDefault(r => r.Book_Id == id);
+            return db.Orders.FirstOrDefault(r => r.Order_Id == id);
         }
 
         public IEnumerable<Order> GetAllLibOrders(string libid)
@@ -58,11 +59,22 @@ namespace Library.Models.BookOrders
             return db.Orders.Where(r => r.Member_id == memid);
         }
 
-        public void Update(Order o)
+        public void Borrow(Order o)
         {
+            
+            o.Status=StatusType.Borrowed;
             var entry = db.Entry(o);
             entry.State = EntityState.Modified;
             db.SaveChanges();
         }
+        public void Return(Order o)
+        {
+
+            o.Status = StatusType.Returned;
+            var entry = db.Entry(o);
+            entry.State = EntityState.Modified;
+            db.SaveChanges();
+        }
+
     }
 }

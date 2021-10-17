@@ -10,15 +10,3 @@
         border: double;
     }
 </style>
-@using (Html.BeginForm())
-{
-    <table id="tbrole">
-        <tr>
-            <td class="c">Enter User Type to be created</td>
-            <td class="c">
-                @Html.EditorFor(m => m.Name)
-            </td>
-        </tr>
-    </table>    
-    <input type="submit" value="Create Role" />
-}

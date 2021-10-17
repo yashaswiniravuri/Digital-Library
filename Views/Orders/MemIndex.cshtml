@@ -15,6 +15,8 @@
             <th>Due Date</th>
             <th>Status</th>
             <th></th>
+            <th></th>
+            <th></th>
         </tr>
         @foreach (var item in Model)
         {
@@ -38,10 +40,37 @@
                     @Html.DisplayFor(modelItem => item.Status)
                 </td>
                 <td>
-                    @Html.ActionLink("Remove item", "Delete", new { id = item.Book_Id })
+                    @Html.ActionLink("Details", "Details",
+                    "Orders", new { id = item.Book_Id }, null)
                 </td>
+
+                @if (item.Status == Library.Models.BookOrders.StatusType.To_be_borrowed)
+                {
+                    <td>
+                        <a class="btn btn-primary"
+                           href="@Url.Action("Delete", "Orders", new { id = item.Order_Id })">
+                            Remove
+                        </a>
+                    </td>
+                    <td>
+                        <a class="btn btn-primary"
+                           href="@Url.Action("Borrow", "Orders", new { id = item.Order_Id })">
+                            Borrow
+                        </a>
+                    </td>
+                }
+                <td>
+                    @if (item.Status == Library.Models.BookOrders.StatusType.Borrowed)
+                    {
+                    <a class="btn btn-primary"
+                       href="@Url.Action("Return", "Orders", new { id = item.Order_Id })">
+                        Return
+                    </a>
+                    }
             </tr>
         }
+        </td>
+
 
     </table>
 </div>

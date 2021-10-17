@@ -189,8 +189,10 @@
     <Compile Include="Models\BookOrders\IUserData.cs" />
     <Compile Include="Models\BookOrders\LibraryBook.cs" />
     <Compile Include="Models\BookOrders\Order.cs" />
+    <Compile Include="Models\BookOrders\StatusType.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
+    <Compile Include="Models\RoleName.cs" />
     <Compile Include="Models\RolesModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
@@ -279,6 +281,10 @@
     <Content Include="Views\Orders\MemIndex.cshtml" />
     <Content Include="Views\Orders\Create.cshtml" />
     <Content Include="Views\Orders\LibIndex.cshtml" />
+    <Content Include="Views\Orders\Details.cshtml" />
+    <Content Include="Views\Orders\Borrow.cshtml" />
+    <Content Include="Views\Orders\Return.cshtml" />
+    <Content Include="Views\Orders\Update.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

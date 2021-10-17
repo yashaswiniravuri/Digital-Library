@@ -38,6 +38,7 @@ namespace Library.Models.BookOrders
         public bool LockoutEnabled { get; set; }
 
         public int AccessFailedCount { get; set; }
+        public string City { get; set; }
 
         [Required]
         [StringLength(256)]

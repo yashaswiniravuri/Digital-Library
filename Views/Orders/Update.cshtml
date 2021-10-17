@@ -1,0 +1,72 @@
+﻿@model Library.Models.BookOrders.LibraryBook
+
+@{
+    ViewBag.Title = "Update";
+}
+
+<h2>Update copies</h2>
+
+
+<dl class="dl-horizontal">
+    <hr />
+    <dt>
+        @Html.DisplayNameFor(model => model.Name)
+    </dt>
+
+    <dd>
+        @Html.DisplayFor(model => model.Name)
+    </dd>
+
+    <dt>
+        @Html.DisplayNameFor(model => model.Genre)
+    </dt>
+
+    <dd>
+        @Html.DisplayFor(model => model.Genre)
+    </dd>
+
+    <dt>
+        @Html.DisplayNameFor(model => model.Author)
+    </dt>
+
+    <dd>
+        @Html.DisplayFor(model => model.Author)
+    </dd>
+
+    <dt>
+        @Html.DisplayNameFor(model => model.Description)
+    </dt>
+
+    <dd>
+        @Html.DisplayFor(model => model.Description)
+    </dd></dl>
+    @using (Html.BeginForm())
+    {
+        @Html.AntiForgeryToken()
+
+<div class="form-horizontal">
+    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+    @Html.HiddenFor(model => model.Book_Id)
+    @Html.HiddenFor(model => model.Author)
+    @Html.HiddenFor(model => model.Description)
+    @Html.HiddenFor(model => model.Genre)
+    @Html.HiddenFor(model => model.Name)
+    <div class="form-group">
+        @Html.LabelFor(model => model.Copies, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.EditorFor(model => model.Copies, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.Copies, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="form-group">
+        <div class="col-md-offset-2 col-md-10">
+            <input type="submit" value="Save" class="btn btn-default" />
+        </div>
+    </div>
+</div>
+    }
+
+    <div>
+        @Html.ActionLink("Back to Orders", "LibIndex")
+    </div>

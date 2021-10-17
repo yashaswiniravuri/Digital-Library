@@ -25,7 +25,7 @@ namespace Library.Models.BookOrders
         [Column(TypeName = "date")]
         public DateTime? Due_Date { get; set; }
 
-        public bool? Status { get; set; }
+        public StatusType Status { get; set; }
 
         public virtual AspNetUser AspNetUser { get; set; }//librarian user
 

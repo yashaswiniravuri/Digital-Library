@@ -34,23 +34,24 @@ namespace Library.Controllers
         /// Create  a New role
         /// </summary>
         /// <returns></returns>
-        public ActionResult Create()
-        {
-            var Role = new IdentityRole();
-            return View(Role);
-        }
+        //public ActionResult Create()
+        //{
+        //    var Role = new IdentityRole();
+        //    return View(Role);
+       // }
  
         /// <summary>
         /// Create a New Role
         /// </summary>
         /// <param name="Role"></param>
         /// <returns></returns>
-        [HttpPost]
-        public ActionResult Create(IdentityRole Role)
-        {
-            context.Roles.Add(Role);
-            context.SaveChanges();
-            return RedirectToAction("Index");
-        }
+      //  [HttpPost]
+       // public ActionResult Create(IdentityRole Role)
+      //  {
+
+         //   context.Roles.Add(Role);
+          //  context.SaveChanges();
+          //  return RedirectToAction("Index");
+        //}
     }
 }

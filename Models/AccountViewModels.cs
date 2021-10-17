@@ -1,5 +1,7 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Library.Models
 {
@@ -48,10 +50,11 @@ namespace Library.Models
 
     public class LoginViewModel
     {
-        [Required]
+       //[Required]
         [Display(Name = "Email")]
         [EmailAddress]
         public string Email { get; set; }
+
 
         [Required]
         [DataType(DataType.Password)]
@@ -79,7 +82,12 @@ namespace Library.Models
         [Display(Name = "Confirm password")]
         [Compare("Password", ErrorMessage = "The password and confirmation password do not match.")]
         public string ConfirmPassword { get; set; }
+        
         public string Name { get; set; }
+        public string City { get; set; }
+        public string PhoneNumber { get; set; }
+        [Required]
+        public string UserName { get; set; }
 
     }
     public class ResetPasswordViewModel
