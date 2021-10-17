@@ -1,8 +1,8 @@
 ﻿namespace Library.Models
 {
-    public enum RoleName
+    public class RoleName
     {
-        Librarian,
-       Member
+        public string lib = "Librarian";
+        public string mem = "Member";
     }
 }

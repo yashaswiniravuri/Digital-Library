@@ -53,7 +53,7 @@
 </div>
 @if (User.IsInRole("Librarian"))
 {
-    <li>@Html.ActionLink("Back To Gallery","LibIndex")</li>
+    @Html.ActionLink("Go To Gallery","LibIndex")
 }
 @if (User.IsInRole("Member"))
 {

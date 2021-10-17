@@ -30,7 +30,7 @@
         </div>
     </div>
     <div class="form-group">
-        @Html.LabelFor(m => m.City, new { @class = "col-md-2 control-label" })
+        <label class = "col-md-2 control-label" for="City">Address</label>
         <div class="col-md-10">
             @Html.TextBoxFor(m => m.City, new { @class = "form-control" })
         </div>
@@ -49,11 +49,14 @@
     </div>
 
     <div class="form-group">
-        @Html.Label("Select Your User Type", new { @class = "col-md-2 control-label" })
-        <div class="col-md-10">
-            @Html.DropDownList("Name")
-            <!-- @Html.TextBoxFor(m=>m.Name, new { @class = "form-control" })-->
-        </div>
+        <p>@Html.Label("Select Your Role:", new { @class = "col-md-2 control-label" })</p>
+       <div class="col-md-10">
+           <p>
+               Librarian: @Html.RadioButton("Name", "Librarian", false)
+               &emsp;
+               Member: @Html.RadioButton("Name", "Member", true)
+           </p> 
+ </div>
     </div>
     <div class="form-group">
         <div class="col-md-offset-2 col-md-10">

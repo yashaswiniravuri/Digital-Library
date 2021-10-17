@@ -176,7 +176,6 @@
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Controllers\OrdersController.cs" />
-    <Compile Include="Controllers\RoleController.cs" />
     <Compile Include="CustomFilters\AuthLogAttribute.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -191,6 +190,7 @@
     <Compile Include="Models\BookOrders\Order.cs" />
     <Compile Include="Models\BookOrders\StatusType.cs" />
     <Compile Include="Models\IdentityModels.cs" />
+    <Compile Include="Models\MailModel.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
     <Compile Include="Models\RoleName.cs" />
     <Compile Include="Models\RolesModel.cs" />
@@ -268,9 +268,7 @@
     <Content Include="Views\Shared\Lockout.cshtml" />
     <Content Include="Views\Shared\_LoginPartial.cshtml" />
     <Content Include="Views\Manage\AddUserType.cshtml" />
-    <Content Include="Views\Role\Index.cshtml" />
     <Content Include="Views\Account\_ExternalLoginsListPartial.cshtml" />
-    <Content Include="Views\Role\Create.cshtml" />
     <Content Include="Views\BooksMenu\Delete.cshtml" />
     <Content Include="Views\BooksMenu\Edit.cshtml" />
     <Content Include="Views\BooksMenu\Details.cshtml" />

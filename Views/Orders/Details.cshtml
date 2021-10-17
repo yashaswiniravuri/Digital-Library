@@ -63,12 +63,12 @@
         @if (User.IsInRole("Member"))
         {
             <dt>
-                @Html.DisplayNameFor(model => model.AspNetUser.UserName)
+               Librarian Name:
             </dt>
             <dd>
                 @Html.DisplayFor(model => model.AspNetUser.UserName)
             </dd>
-            <dt>@Html.DisplayNameFor(model => model.AspNetUser.City)</dt>
+            <dt>Librarian Address:</dt>
             <dd>@Html.DisplayFor(model => model.AspNetUser.City)</dd>
             <a class="btn btn-primary"
                href="@Url.Action("MemIndex", "Orders")">

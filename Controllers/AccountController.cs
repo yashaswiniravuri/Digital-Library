@@ -156,8 +156,7 @@ namespace Library.Controllers
         [AllowAnonymous]
         public ActionResult Register()
         {
-            ViewBag.Name = new SelectList(context.Roles.ToList(), "Name", "Name");
-            return View();
+          return View();
         }
 
         //

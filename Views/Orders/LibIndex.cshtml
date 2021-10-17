@@ -11,6 +11,7 @@
             <th>Book</th>
             <th>Author</th>
             <th>Member</th>
+            <th>Member Address</th>
             <th>Borrow Date</th>
             <th>Due Date</th>
             <th>Status</th>
@@ -29,6 +30,9 @@
             @Html.DisplayFor(modelItem => item.AspNetUser1.UserName)
         </td>
         <td>
+            @Html.DisplayFor(modelItem => item.AspNetUser1.City)
+        </td>
+        <td>
             @Html.DisplayFor(modelItem => item.Borrow_Date)
         </td>
         <td>
@@ -37,6 +41,7 @@
         <td>
             @Html.DisplayFor(modelItem => item.Status)
         </td>
+
         <td>
             @if (item.Status == Library.Models.BookOrders.StatusType.Borrowed || item.Status == Library.Models.BookOrders.StatusType.Returned)
             {
@@ -45,8 +50,8 @@
                     Update Copies
                 </a>
             }
-            </td>
-        
+        </td>
+
     </tr>
         }
 
