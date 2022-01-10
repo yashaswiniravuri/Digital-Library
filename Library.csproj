@@ -214,6 +214,10 @@
     <Content Include="Content\bootstrap.min.css" />
     <Content Include="Content\bootstrap.rtl.css" />
     <Content Include="Content\bootstrap.rtl.min.css" />
+    <Content Include="Content\image\books1.jpg" />
+    <Content Include="Content\image\books2.jpg" />
+    <Content Include="Content\image\books3.jpg" />
+    <Content Include="Content\image\books4.jpg" />
     <Content Include="favicon.ico" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
@@ -245,7 +249,7 @@
     <Content Include="Views\_ViewStart.cshtml" />
     <Content Include="Views\Shared\Error.cshtml" />
     <Content Include="Views\Shared\_Layout.cshtml" />
-    <Content Include="Views\Home\About.cshtml" />
+    <Content Include="Views\Home\Help.cshtml" />
     <Content Include="Views\Home\Contact.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Views\Account\ConfirmEmail.cshtml" />
@@ -274,8 +278,8 @@
     <Content Include="Views\BooksMenu\Details.cshtml" />
     <Content Include="Views\Shared\AuthorizeFailed.cshtml" />
     <Content Include="Views\BooksMenu\Create.cshtml" />
-    <Content Include="Views\BooksMenu\Index.cshtml" />
-    <Content Include="Views\BooksMenu\LibIndex.cshtml" />
+    <Content Include="Views\BooksMenu\BooksGallery.cshtml" />
+    <None Include="Views\BooksMenu\LibGallery.cshtml" />
     <Content Include="Views\Orders\MemIndex.cshtml" />
     <Content Include="Views\Orders\Create.cshtml" />
     <Content Include="Views\Orders\LibIndex.cshtml" />

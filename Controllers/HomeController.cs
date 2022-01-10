@@ -13,7 +13,7 @@ namespace Library.Controllers
             return View();
         }
 
-        public ActionResult About()
+        public ActionResult Help()
         {
             ViewBag.Message = "Your application description page.";
 

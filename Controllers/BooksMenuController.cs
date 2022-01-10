@@ -21,7 +21,7 @@ namespace Library.Controllers.Books
         }
         [HttpGet]
         [Authorize(Roles = "Member")]
-        public ActionResult Index()
+        public ActionResult BooksGallery()
         {
             var model = Books.GetAll();
             return View(model.ToList());
@@ -94,7 +94,7 @@ namespace Library.Controllers.Books
             Books.Delete(id);
             return RedirectToAction("LibIndex");
         }
-        public ActionResult LibIndex()
+        public ActionResult LibGallery()
         {
             var model = Books.GetLib();
             return View(model.ToList());

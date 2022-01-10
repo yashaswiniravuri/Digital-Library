@@ -9,7 +9,8 @@
 
 </head>
 <body>
-    <div class="navbar navbar-inverse navbar-fixed-top">
+    
+    <div class="navbar navbar-inverse navbar-fixed-top bg-info">
         <div class="container">
             <div class="navbar-header">
                 <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
@@ -24,20 +25,19 @@
             </div>
             <div class="navbar-collapse collapse">
                 <ul class="nav navbar-nav">
-                    <li>@Html.ActionLink("Home", "Index", "Home")</li>
-
-                    <li>@Html.ActionLink("About", "About", "Home")</li>
-                    <li>@Html.ActionLink("Contact", "Contact", "Home")</li>
+                    <li class="@(ViewContext.RouteData.Values["Action"].ToString() == "Index" ? "active" : "")">@Html.ActionLink("Home", "Index", "Home")</li>
+                    <li class="@(ViewContext.RouteData.Values["Action"].ToString() == "Contact" ? "active" : "")">@Html.ActionLink("Contact", "Contact", "Home")</li>
+                    <li class="@(ViewContext.RouteData.Values["Action"].ToString() == "Help" ? "active" : "")">@Html.ActionLink("Help", "Help", "Home")</li>
                     @if (User.IsInRole("Librarian"))
                     {
-                        <li>@Html.ActionLink("Upload Books", "Create", "BooksMenu")</li>
-                        <li>@Html.ActionLink("Librarian Orders", "LibIndex", "Orders")</li>
-                        <li>@Html.ActionLink("Gallery", "LibIndex", "BooksMenu")</li>
+                        <li class="@(ViewContext.RouteData.Values["Action"].ToString() == "Create" ? "active" : "")">@Html.ActionLink("Upload Books", "Create", "BooksMenu")</li>
+                        <li class="@(ViewContext.RouteData.Values["Action"].ToString() == "LibIndex" ? "active" : "")">@Html.ActionLink("Librarian Orders", "LibIndex", "Orders")</li>
+                        <li class="@(ViewContext.RouteData.Values["Action"].ToString() == "LibGallery" ? "active" : "")">@Html.ActionLink("Gallery", "LibGallery", "BooksMenu")</li>
                     }
                     @if (User.IsInRole("Member"))
                     {
-                        <li>@Html.ActionLink("Books Gallery", "Index", "BooksMenu")</li>
-                        <li>@Html.ActionLink("Cart", "MemIndex", "Orders")</li>
+                        <li class="@(ViewContext.RouteData.Values["Action"].ToString() == "BooksGallery" ? "active" : "")">@Html.ActionLink("Books Gallery", "BooksGallery", "BooksMenu")</li>
+                        <li class="@(ViewContext.RouteData.Values["Action"].ToString() == "MemIndex" ? "active" : "")">@Html.ActionLink("Cart", "MemIndex", "Orders")</li>
                     }
 
                 </ul>
