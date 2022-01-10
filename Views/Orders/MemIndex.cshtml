@@ -1,0 +1,78 @@
+﻿@model IEnumerable<Library.Models.BookOrders.Order>
+@{
+    ViewBag.Title = "MemIndex";
+}
+
+<h2>Cart</h2>
+
+<div>
+    <table class="table table-bordered table-responsive table-hover" id="tblEmployee">
+        <tr>
+            <th>Book</th>
+            <th>Author</th>
+            <th>Librarian</th>
+            <th>Borrow Date</th>
+            <th>Due Date</th>
+            <th>Status</th>
+            <th></th>
+            <th></th>
+            <th></th>
+        </tr>
+        @foreach (var item in Model)
+        {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.LibraryBook.Name)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.LibraryBook.Author)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.AspNetUser.UserName)
+        </td>
+        
+        <td>
+            @Html.DisplayFor(modelItem => item.Borrow_Date)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Due_Date)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Status)
+        </td>
+        <td>
+            @Html.ActionLink("Details", "Details",
+            "Orders", new { id = item.Book_Id }, null)
+        </td>
+
+        @if (item.Status == Library.Models.BookOrders.StatusType.To_be_borrowed)
+        {
+            <td>
+                <a class="btn btn-primary"
+                   href="@Url.Action("Delete", "Orders", new { id = item.Order_Id })">
+                    Remove
+                </a>
+            </td>
+            <td>
+                <a class="btn btn-primary"
+                   href="@Url.Action("Borrow", "Orders", new { id = item.Order_Id })">
+                    Borrow
+                </a>
+            </td>
+        }
+        <td>
+            @if (item.Status == Library.Models.BookOrders.StatusType.Borrowed)
+            {
+                <a class="btn btn-primary"
+                   href="@Url.Action("Return", "Orders", new { id = item.Order_Id })">
+                    Return
+                </a>
+            }
+    </tr>
+        }
+        </td>
+
+
+    </table>
+</div>
+

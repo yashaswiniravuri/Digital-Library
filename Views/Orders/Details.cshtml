@@ -1,10 +1,9 @@
 ﻿@model Library.Models.BookOrders.LibraryBook
-
 @{
     ViewBag.Title = "Details";
 }
 
-
+<h2>Details</h2>
 <div>
     <h4>LibraryBook</h4>
     <hr />
@@ -48,18 +47,33 @@
         <dd>
             @Html.DisplayFor(model => model.Description)
         </dd>
-
+        @if (User.IsInRole("Librarian"))
+        {
+            <dt>
+                @Html.DisplayNameFor(model => model.AspNetUser.UserName)
+            </dt>
+            <dd>
+                @Html.DisplayFor(model => model.AspNetUser.UserName)
+            </dd>
+            <a class="btn btn-primary"
+               href="@Url.Action("LibIndex", "Orders")">
+                Go Back
+            </a>
+        }
+        @if (User.IsInRole("Member"))
+        {
+            <dt>
+               Librarian Name:
+            </dt>
+            <dd>
+                @Html.DisplayFor(model => model.AspNetUser.UserName)
+            </dd>
+            <dt>Librarian Address:</dt>
+            <dd>@Html.DisplayFor(model => model.AspNetUser.City)</dd>
+            <a class="btn btn-primary"
+               href="@Url.Action("MemIndex", "Orders")">
+                Go Back
+            </a>
+        }
     </dl>
 </div>
-@if (User.IsInRole("Librarian"))
-{
-    @Html.ActionLink("Go To Gallery","LibIndex")
-}
-@if (User.IsInRole("Member"))
-{
-    <a class="btn btn-primary"
-       href="@Url.Action("Create","Orders",new { id = Model.Book_Id })">
-        Add to cart
-    </a>
-
-}

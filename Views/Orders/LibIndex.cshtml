@@ -1,0 +1,60 @@
+﻿@model IEnumerable<Library.Models.BookOrders.Order>
+@{
+    ViewBag.Title = "Orders";
+}
+
+<h2>Orders</h2>
+
+<div>
+    <table class="table table-bordered table-responsive table-hover" id="tblEmployee">
+        <tr>
+            <th>Book</th>
+            <th>Author</th>
+            <th>Member</th>
+            <th>Member Address</th>
+            <th>Borrow Date</th>
+            <th>Due Date</th>
+            <th>Status</th>
+            <th>Update</th>
+        </tr>
+        @foreach (var item in Model)
+        {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.LibraryBook.Name)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.LibraryBook.Author)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.AspNetUser1.UserName)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.AspNetUser1.City)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Borrow_Date)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Due_Date)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Status)
+        </td>
+
+        <td>
+            @if (item.Status == Library.Models.BookOrders.StatusType.Borrowed || item.Status == Library.Models.BookOrders.StatusType.Returned)
+            {
+                <a class="btn btn-primary"
+                   href="@Url.Action("Update", "Orders", new { id = item.Book_Id })">
+                    Update Copies
+                </a>
+            }
+        </td>
+
+    </tr>
+        }
+
+    </table>
+</div>
+

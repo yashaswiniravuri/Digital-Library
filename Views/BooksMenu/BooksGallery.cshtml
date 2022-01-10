@@ -1,0 +1,29 @@
+﻿@model IEnumerable<Library.Models.BookOrders.LibraryBook>
+
+@{
+    ViewBag.Title = "Gallery";
+}
+
+<h2>
+    Books Gallery
+</h2>
+<div>
+    <table class="table table-bordered table-responsive table-hover" id="tblEmployee">
+        <tr>
+            <th>Book</th>
+            <th>Details</th>
+        </tr>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Name)
+                </td>
+                <td>
+                    @Html.ActionLink("Explore", "Details", new { id = item.Book_Id })
+                </td>
+            </tr>
+        }
+
+    </table>
+</div>

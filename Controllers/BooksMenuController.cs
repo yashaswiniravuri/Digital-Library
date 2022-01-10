@@ -4,7 +4,7 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using Library.Models;
-using Library.Models.Books;
+using Library.Models.BookOrders;
 using Microsoft.AspNet.Identity;
 
 namespace Library.Controllers.Books
@@ -13,30 +13,29 @@ namespace Library.Controllers.Books
     public class BooksMenuController : Controller
     {
         // GET: BooksMenu
-       SqlBooksData sqlBooksData;
+       BooksData Books;
         public BooksMenuController()
         {
-            BooksModel bm = new BooksModel();
-            sqlBooksData = new SqlBooksData(bm);
+            BooksOrder bm = new BooksOrder();
+            Books = new BooksData(bm);
         }
         [HttpGet]
         [Authorize(Roles = "Member")]
-        public ActionResult Index()
+        public ActionResult BooksGallery()
         {
-            var model = sqlBooksData.GetAll();
-            return View(model);
+            var model = Books.GetAll();
+            return View(model.ToList());
         }
         [HttpGet]
         public ActionResult Details(int id)
         {
-            var model = sqlBooksData.Get(id);
+            var model = Books.Get(id);
             return View(model);
         }
         [Authorize(Roles="Librarian")]
         [HttpGet]
         public ActionResult Create()
         {
-            
             return View();
         }
         [Authorize(Roles ="Librarian")]
@@ -48,7 +47,7 @@ namespace Library.Controllers.Books
             //get user id from asp.net users
             if (ModelState.IsValid)
             {
-                sqlBooksData.Add(books);
+                Books.Add(books);
                 return RedirectToAction("Details", new { id = books.Book_Id });
             }
             return View();
@@ -57,7 +56,7 @@ namespace Library.Controllers.Books
         [Authorize(Roles = "Librarian")]
         public ActionResult Edit(int id)
         {
-            var model = sqlBooksData.Get(id);
+            var model = Books.Get(id);
             if (model == null)
             {
                 return HttpNotFound();
@@ -71,7 +70,7 @@ namespace Library.Controllers.Books
         {
             if (ModelState.IsValid)
             {
-                sqlBooksData.Update(book);
+                Books.Update(book);
                 return RedirectToAction("Details", new { id = book.Book_Id });
             }
             return View(book);
@@ -80,7 +79,7 @@ namespace Library.Controllers.Books
         [Authorize(Roles = "Librarian")]
         public ActionResult Delete(int id)
         {
-            var model = sqlBooksData.Get(id);
+            var model = Books.Get(id);
             if (model == null)
             {
                 return View("not found");
@@ -92,8 +91,13 @@ namespace Library.Controllers.Books
         [Authorize(Roles = "Librarian")]
         public ActionResult Delete(int id, FormCollection form)
         {
-            sqlBooksData.Delete(id);
-            return RedirectToAction("Index");
+            Books.Delete(id);
+            return RedirectToAction("LibIndex");
+        }
+        public ActionResult LibGallery()
+        {
+            var model = Books.GetLib();
+            return View(model.ToList());
         }
     }
 }

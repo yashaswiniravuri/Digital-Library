@@ -1,24 +1,37 @@
-﻿using System;
+﻿using Microsoft.AspNet.Identity;
+using System;
 using System.Collections.Generic;
 using System.Data.Entity;
 using System.Linq;
-using System.Web;
-using Microsoft.AspNet.Identity;
+using System.Text;
+using System.Threading.Tasks;
 
-namespace Library.Models.Books
+namespace Library.Models.BookOrders
 {
-    public class SqlBooksData:IBooksData
+    public interface IBooksData
     {
-        private readonly BooksModel db;
-
-        public SqlBooksData(BooksModel db)
+        IEnumerable<LibraryBook> GetAll();
+        LibraryBook Get(int id);
+        IEnumerable<LibraryBook> GetLib();
+        void Add(LibraryBook MyBooks);
+        void Update(LibraryBook b);
+        void Delete(int id);
+    }
+    public class BooksData : IBooksData
+    {
+        private readonly BooksOrder db;
+        public BooksData(BooksOrder db)
         {
             this.db = db;
         }
-
+        public IEnumerable<LibraryBook> GetLib()
+        {
+            var Lib_Id = System.Web.HttpContext.Current.User.Identity.GetUserId();
+            return db.LibraryBooks.Where(r => r.AspNetUser.Id == Lib_Id);
+        }
         public void Add(LibraryBook MyBooks)
         {
-            MyBooks.Lib_Id=System.Web.HttpContext.Current.User.Identity.GetUserId();
+            MyBooks.Lib_Id = System.Web.HttpContext.Current.User.Identity.GetUserId();
             db.LibraryBooks.Add(MyBooks);
             db.SaveChanges();
         }
