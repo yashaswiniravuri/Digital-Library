@@ -3,12 +3,18 @@
 @{
     ViewBag.Title = "Gallery";
 }
+<style>
+    body {
+        background: -webkit-linear-gradient(left,grey, black, grey);
+    }
 
-<h2>
-   Added Books Gallery
+
+</style>
+<h2 style="color:white">
+    Added Books Gallery
 </h2>
 <div>
-    <table class="table table-bordered table-responsive table-hover" id="tblEmployee">
+    <table class="table table-bordered table-responsive table-hover" id="tblEmployee" style="background-color:#9D9D9D">
         <tr>
             <th>Book</th>
             <th>Details</th>
@@ -17,22 +23,25 @@
         </tr>
         @foreach (var item in Model)
         {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.Name)
-        </td>
-        <td>
-            @Html.ActionLink("Explore", "Details", new { id = item.Book_Id })
-        </td>
-        <td>
-            @Html.ActionLink("Delete", "Delete", new { id = item.Book_Id })
-        </td>
-         <td>
-            @Html.ActionLink("Update", "Edit", new { id = item.Book_Id })
-        </td>
-    </tr>
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Name)
+                </td>
+                <td class="myclass">
+                    @Html.ActionLink("Explore", "Details", new { id = item.Book_Id }, new { @class = "myclass" })
+                </td>
+                <td class="myclass">
+                    @Html.ActionLink("Delete", "Delete", new { id = item.Book_Id }, new { @class = "myclass" })
+                </td>
+                <td class="myclass">
+                    @Html.ActionLink("Update", "Edit", new { id = item.Book_Id }, new { @class = "myclass" })
+                </td>
+            </tr>
         }
 
     </table>
 </div>
-<p>@Html.ActionLink("Add books","Create")</p>
+<a class="btn btn-primary"
+   href="@Url.Action("Create","BooksMenu")">
+    Upload books
+</a>

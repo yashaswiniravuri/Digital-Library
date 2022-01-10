@@ -218,6 +218,7 @@
     <Content Include="Content\image\books2.jpg" />
     <Content Include="Content\image\books3.jpg" />
     <Content Include="Content\image\books4.jpg" />
+    <Content Include="Content\image\books5.jpg" />
     <Content Include="favicon.ico" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />

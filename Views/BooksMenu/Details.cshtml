@@ -3,63 +3,104 @@
 @{
     ViewBag.Title = "Details";
 }
+<style>
+    body {
+        background: -webkit-linear-gradient(left,grey, black, grey);
+    }
 
+    .note {
+        text-align: center;
+        height: 60px;
+        padding-bottom: 2%;
+        background: -webkit-linear-gradient(left,black, lightgray, black);
+        font-weight: bold;
+        line-height: 80px;
+        margin-left: 15%;
+        margin-right: 15%;
+        margin-top: 4%;
+        color: black;
+    }
+
+    .form-content {
+        padding-left: 13%;
+        padding-top: 3%;
+        padding-bottom: 3%;
+        border: 1px solid #ced4da;
+        margin-left: 15%;
+        margin-right: 15%;
+        color: white;
+    }
+
+    .myclass {
+        color: white;
+        text-decoration: underline;
+    }
+
+        .myclass:hover {
+            color: black;
+        }
+</style>
 
 <div>
-    <h4>LibraryBook</h4>
-    <hr />
-    <dl class="dl-horizontal">
-        <dt>
-            @Html.DisplayNameFor(model => model.Name)
-        </dt>
+    <div class="note" style="font-size:medium; padding-top:-2%">BOOK DETAILS</div>
+    <div class="form-content">
+        <dl class="dl-horizontal">
+            <dt>
+                @Html.DisplayNameFor(model => model.Name)
+            </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.Name)
-        </dd>
+            <dd>
+                @Html.DisplayFor(model => model.Name)
+            </dd>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.Genre)
-        </dt>
+            <dt>
+                @Html.DisplayNameFor(model => model.Genre)
+            </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.Genre)
-        </dd>
+            <dd>
+                @Html.DisplayFor(model => model.Genre)
+            </dd>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.Copies)
-        </dt>
+            <dt>
+                @Html.DisplayNameFor(model => model.Copies)
+            </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.Copies)
-        </dd>
+            <dd>
+                @Html.DisplayFor(model => model.Copies)
+            </dd>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.Author)
-        </dt>
+            <dt>
+                @Html.DisplayNameFor(model => model.Author)
+            </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.Author)
-        </dd>
+            <dd>
+                @Html.DisplayFor(model => model.Author)
+            </dd>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.Description)
-        </dt>
+            <dt>
+                @Html.DisplayNameFor(model => model.Description)
+            </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.Description)
-        </dd>
+            <dd>
+                @Html.DisplayFor(model => model.Description)
+            </dd>
 
-    </dl>
+
+            @if (User.IsInRole("Librarian"))
+            {
+                <a class="btn btn-primary" style="margin-top:2%;margin-left:30%"
+                   href="@Url.Action("LibGallery", "BooksMenu")">
+                    Goto Gallery
+                </a>
+            }
+            @if (User.IsInRole("Member"))
+            {
+                <a class="btn btn-primary" style="margin-top:2%;margin-left:30%"
+                   href="@Url.Action("Create","Orders",new { id = Model.Book_Id })">
+                    Add to cart
+                </a>
+
+            }
+        </dl>
+    </div>
 </div>
-@if (User.IsInRole("Librarian"))
-{
-    @Html.ActionLink("Go To Gallery","LibIndex")
-}
-@if (User.IsInRole("Member"))
-{
-    <a class="btn btn-primary"
-       href="@Url.Action("Create","Orders",new { id = Model.Book_Id })">
-        Add to cart
-    </a>
-
-}
