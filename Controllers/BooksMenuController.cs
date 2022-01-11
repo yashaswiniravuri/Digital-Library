@@ -92,7 +92,7 @@ namespace Library.Controllers.Books
         public ActionResult Delete(int id, FormCollection form)
         {
             Books.Delete(id);
-            return RedirectToAction("LibIndex");
+            return RedirectToAction("LibGallery");
         }
         public ActionResult LibGallery()
         {

@@ -30,8 +30,8 @@ namespace Library.Models.BookOrders
             MyOrder.Member_id = System.Web.HttpContext.Current.User.Identity.GetUserId();
             MyOrder.Book_Id = bid;
             MyOrder.Librarian_Id=lib;
-            MyOrder.Borrow_Date = DateTime.Today;
-            MyOrder.Due_Date = DateTime.Today.AddDays(15);
+            MyOrder.Borrow_Date = DateTime.Now;
+            MyOrder.Due_Date = DateTime.Now.AddDays(60);
             MyOrder.Status=StatusType.To_be_borrowed;
             db.Orders.Add(MyOrder);
             db.SaveChanges();

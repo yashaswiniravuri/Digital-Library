@@ -26,20 +26,19 @@
             <div class="navbar-collapse collapse">
                 <ul class="nav navbar-nav">
                     <li class="@(ViewContext.RouteData.Values["Action"].ToString() == "Index" ? "active" : "")">@Html.ActionLink("Home", "Index", "Home")</li>
-                    <li class="@(ViewContext.RouteData.Values["Action"].ToString() == "Contact" ? "active" : "")">@Html.ActionLink("Contact", "Contact", "Home")</li>
-                    <li class="@(ViewContext.RouteData.Values["Action"].ToString() == "Help" ? "active" : "")">@Html.ActionLink("Help", "Help", "Home")</li>
                     @if (User.IsInRole("Librarian"))
                     {
                         <li class="@(ViewContext.RouteData.Values["Action"].ToString() == "Create" ? "active" : "")">@Html.ActionLink("Upload Books", "Create", "BooksMenu")</li>
-                        <li class="@(ViewContext.RouteData.Values["Action"].ToString() == "LibIndex" ? "active" : "")">@Html.ActionLink("Librarian Orders", "LibIndex", "Orders")</li>
                         <li class="@(ViewContext.RouteData.Values["Action"].ToString() == "LibGallery" ? "active" : "")">@Html.ActionLink("Gallery", "LibGallery", "BooksMenu")</li>
+                        <li class="@(ViewContext.RouteData.Values["Action"].ToString() == "LibIndex" ? "active" : "")">@Html.ActionLink("Librarian Orders", "LibIndex", "Orders")</li>
                     }
                     @if (User.IsInRole("Member"))
                     {
                         <li class="@(ViewContext.RouteData.Values["Action"].ToString() == "BooksGallery" ? "active" : "")">@Html.ActionLink("Books Gallery", "BooksGallery", "BooksMenu")</li>
                         <li class="@(ViewContext.RouteData.Values["Action"].ToString() == "MemIndex" ? "active" : "")">@Html.ActionLink("Cart", "MemIndex", "Orders")</li>
                     }
-
+                    <li class="@(ViewContext.RouteData.Values["Action"].ToString() == "Contact" ? "active" : "")">@Html.ActionLink("Contact", "Contact", "Home")</li>
+                    <li class="@(ViewContext.RouteData.Values["Action"].ToString() == "Help" ? "active" : "")">@Html.ActionLink("Help", "Help", "Home")</li>
                 </ul>
                 @Html.Partial("_LoginPartial")
             </div>
@@ -49,7 +48,7 @@
         @RenderBody()
         <hr />
         <footer>
-            <p>&copy; @DateTime.Now.Year - Books At Your Door Step</p>
+            <p style="color:white">&copy; @DateTime.Now.Year - Books At Your Door Step</p>
         </footer>
     </div>
 

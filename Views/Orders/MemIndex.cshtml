@@ -2,77 +2,286 @@
 @{
     ViewBag.Title = "MemIndex";
 }
+<style>
+    body {
+        margin-top: 20px;
+        background: -webkit-linear-gradient(left,grey, black, grey);
+    }
+    /* E-commerce */
+    .product-box {
+        padding: 0;
+        border: 1px solid #e7eaec;
+    }
 
-<h2>Cart</h2>
-
-<div>
-    <table class="table table-bordered table-responsive table-hover" id="tblEmployee">
-        <tr>
-            <th>Book</th>
-            <th>Author</th>
-            <th>Librarian</th>
-            <th>Borrow Date</th>
-            <th>Due Date</th>
-            <th>Status</th>
-            <th></th>
-            <th></th>
-            <th></th>
-        </tr>
-        @foreach (var item in Model)
-        {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.LibraryBook.Name)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.LibraryBook.Author)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.AspNetUser.UserName)
-        </td>
-        
-        <td>
-            @Html.DisplayFor(modelItem => item.Borrow_Date)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Due_Date)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Status)
-        </td>
-        <td>
-            @Html.ActionLink("Details", "Details",
-            "Orders", new { id = item.Book_Id }, null)
-        </td>
-
-        @if (item.Status == Library.Models.BookOrders.StatusType.To_be_borrowed)
-        {
-            <td>
-                <a class="btn btn-primary"
-                   href="@Url.Action("Delete", "Orders", new { id = item.Order_Id })">
-                    Remove
-                </a>
-            </td>
-            <td>
-                <a class="btn btn-primary"
-                   href="@Url.Action("Borrow", "Orders", new { id = item.Order_Id })">
-                    Borrow
-                </a>
-            </td>
+        .product-box:hover,
+        .product-box.active {
+            border: 1px solid transparent;
+            -webkit-box-shadow: 0 3px 7px 0 #a8a8a8;
+            -moz-box-shadow: 0 3px 7px 0 #a8a8a8;
+            box-shadow: 0 3px 7px 0 #a8a8a8;
         }
-        <td>
-            @if (item.Status == Library.Models.BookOrders.StatusType.Borrowed)
-            {
-                <a class="btn btn-primary"
-                   href="@Url.Action("Return", "Orders", new { id = item.Order_Id })">
-                    Return
-                </a>
+
+    .product-imitation {
+        text-align: center;
+        padding: 90px 0;
+        background-color: #f8f8f9;
+        color: #bebec3;
+        font-weight: 600;
+    }
+
+    .cart-product-imitation {
+        text-align: center;
+        padding-top: 30px;
+        height: 80px;
+        width: 80px;
+        background-color: #f8f8f9;
+    }
+
+    .product-imitation.xl {
+        padding: 120px 0;
+    }
+
+    .product-desc {
+        padding: 20px;
+        position: relative;
+    }
+
+    .ecommerce .tag-list {
+        padding: 0;
+    }
+
+    .ecommerce .fa-star {
+        color: #d1dade;
+    }
+
+        .ecommerce .fa-star.active {
+            color: #f8ac59;
+        }
+
+    .ecommerce .note-editor {
+        border: 1px solid #e7eaec;
+    }
+
+    table.shoping-cart-table {
+        margin-bottom: 0;
+    }
+
+        table.shoping-cart-table tr td {
+            border: none;
+            text-align: right;
+        }
+
+            table.shoping-cart-table tr td.desc,
+            table.shoping-cart-table tr td:first-child {
+                text-align: left;
             }
-    </tr>
+
+            table.shoping-cart-table tr td:last-child {
+                width: 80px;
+            }
+
+    .product-name {
+        font-size: 16px;
+        font-weight: 600;
+        color: #676a6c;
+        display: block;
+        margin: 2px 0 5px 0;
+    }
+
+        .product-name:hover,
+        .product-name:focus {
+            color: #1ab394;
         }
-        </td>
 
+    .product-price {
+        font-size: 14px;
+        font-weight: 600;
+        color: #ffffff;
+        background-color: #1ab394;
+        padding: 6px 12px;
+        position: absolute;
+        top: -32px;
+        right: 0;
+    }
 
-    </table>
-</div>
+    .product-detail .ibox-content {
+        padding: 30px 30px 50px 30px;
+    }
+
+    .image-imitation {
+        background-color: #f8f8f9;
+        text-align: center;
+        padding: 200px 0;
+    }
+
+    .product-main-price small {
+        font-size: 10px;
+    }
+
+    .product-images {
+        margin: 0 20px;
+    }
+
+    .ibox {
+        clear: both;
+        margin-bottom: 25px;
+        margin-top: 0;
+        padding: 0;
+    }
+
+        .ibox.collapsed .ibox-content {
+            display: none;
+        }
+
+        .ibox.collapsed .fa.fa-chevron-up:before {
+            content: "\f078";
+        }
+
+        .ibox.collapsed .fa.fa-chevron-down:before {
+            content: "\f077";
+        }
+
+        .ibox:after,
+        .ibox:before {
+            display: table;
+        }
+
+    .ibox-title {
+        -moz-border-bottom-colors: none;
+        -moz-border-left-colors: none;
+        -moz-border-right-colors: none;
+        -moz-border-top-colors: none;
+        background-color: #ffffff;
+        border-color: #e7eaec;
+        border-image: none;
+        border-style: solid solid none;
+        border-width: 3px 0 0;
+        color: inherit;
+        margin-bottom: 0;
+        padding: 14px 15px 7px;
+        min-height: 48px;
+    }
+
+    .ibox-content {
+        background-color: #ffffff;
+        color: inherit;
+        padding: 15px 20px 20px 20px;
+        border-color: #e7eaec;
+        border-image: none;
+        border-style: solid solid none;
+        border-width: 1px 0;
+        border-radius: 1rem;
+        margin-left: 15%;
+    }
+
+    .ibox-footer {
+        color: inherit;
+        border-top: 1px solid #e7eaec;
+        font-size: 90%;
+        background: #ffffff;
+        padding: 10px 15px;
+    }
+</style>
+<h2 style="margin-top:2%;margin-bottom:2%;margin-left:45%;color:white">
+    <svg xmlns="http://www.w3.org/2000/svg" width="50" height="35" fill="white" class="bi bi-cart-fill" viewBox="0 0 16 16">
+        <path d="M0 1.5A.5.5 0 0 1 .5 1H2a.5.5 0 0 1 .485.379L2.89 3H14.5a.5.5 0 0 1 .491.592l-1.5 8A.5.5 0 0 1 13 12H4a.5.5 0 0 1-.491-.408L2.01 3.607 1.61 2H.5a.5.5 0 0 1-.5-.5zM5 12a2 2 0 1 0 0 4 2 2 0 0 0 0-4zm7 0a2 2 0 1 0 0 4 2 2 0 0 0 0-4zm-7 1a1 1 0 1 1 0 2 1 1 0 0 1 0-2zm7 0a1 1 0 1 1 0 2 1 1 0 0 1 0-2z" />
+    </svg> CART
+</h2>
+<link rel="stylesheet" href="http://netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css">
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+
+<script src="http://netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js"></script>
+<script>
+    function showAlert1() {
+        if ($("#myAlert1").find("div#myAlert21").length == 0) {
+            $("#myAlert1").append("<div class='alert alert-success alert-dismissable' id='myAlert21'> <button type='button' class='close' data-dismiss='alert'  aria-hidden='true'>&times;</button>@ViewBag.borrow</div>");
+        }
+        $("#myAlert1").css("display", "");
+    }
+    function showAlert2() {
+        if ($("#myAlert2").find("div#myAlert22").length == 0) {
+            $("#myAlert2").append("<div class='alert alert-success alert-dismissable' id='myAlert22'> <button type='button' class='close' data-dismiss='alert'  aria-hidden='true'>&times;</button>@ViewBag.returned</div>");
+        }
+        $("#myAlert2").css("display", "");
+    }
+
+</script>
+
+@foreach (var item in Model.Reverse())
+{
+    <div class="container">
+        <div class="row">
+            <div class="col-md-10">
+                <div class="ibox">
+                    <div class="ibox-content product-box">
+                        <img src="~/Content/image/books5.jpg" style="float:right;width:50%" />
+                        <div class="product-desc">
+                            <small class="text-muted" style="font-size:large">Book: </small>
+                            <div style="font-style:italic; font-size:medium;">
+                                @Html.DisplayFor(modelItem => item.LibraryBook.Name)
+                            </div>
+                        </div>
+                        <div class="medium m-t-xs">
+                            <div style="font-style:italic">
+                                Author:
+                                @Html.DisplayFor(modelItem => item.LibraryBook.Author)
+                            </div>
+                        </div>
+                        <div class="medium m-t-xs">
+                            <div style="font-style:italic">
+                                Lender username:
+                                @Html.DisplayFor(modelItem => item.AspNetUser.UserName)
+                            </div>
+                        </div>
+                        <div class="medium m-t-xs">
+                            <div style="font-style:italic">
+                                Borrow date:
+                                @Html.DisplayFor(modelItem => item.Borrow_Date)
+                            </div>
+                        </div>
+                        <div class="medium m-t-xs">
+                            <div style="font-style:italic">
+                                Due date:
+                                @Html.DisplayFor(modelItem => item.Due_Date)
+                            </div>
+                        </div>
+                        <div class="medium m-t-xs">
+                            <div style="font-style:italic">
+                                Status:
+                                @Html.DisplayFor(modelItem => item.Status)
+                            </div>
+                        </div>
+                        <div class="m-t text-righ large">
+                            <br />
+                            @Html.ActionLink("Details", "Details", "Orders", new { id = item.Book_Id }, new { @class = "fa fa-long-arrow-right" })
+                        </div>
+
+                        @if (item.Status == Library.Models.BookOrders.StatusType.To_be_borrowed)
+                        {
+                            <a class="m-t text-righ large fa fa-long-arrow-right"
+                               href="@Url.Action("Delete", "Orders", new { id = item.Order_Id })">
+                                Remove
+                            </a><br />
+                            <a class="m-t text-righ large fa fa-long-arrow-right" onclick='alert( "Your borrow request is sent to the lender. A confirmation mail will be sent to you!")'
+                               href="@Url.Action("Borrow", "Orders", new { id = item.Order_Id })">
+                                Borrow
+                            </a><br />
+                           
+                        }
+                        @if (item.Status == Library.Models.BookOrders.StatusType.Borrowed)
+                        {
+                            <a class="m-t text-righ large fa fa-long-arrow-right" onclick="alert('Your have changed the status to return. A confirmation mail will be sent to you!');"
+                               href="@Url.Action("Return", "Orders", new { id = item.Order_Id })">
+                                Return
+                            </a><br />
+                        }
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+}
+
 
