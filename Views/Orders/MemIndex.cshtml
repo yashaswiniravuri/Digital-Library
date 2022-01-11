@@ -183,13 +183,32 @@
     }
 </style>
 <h2 style="margin-top:2%;margin-bottom:2%;margin-left:45%;color:white">
-    <svg xmlns="http://www.w3.org/2000/svg"  width="50" height="35" fill="white" class="bi bi-cart-fill" viewBox="0 0 16 16">
-    <path d="M0 1.5A.5.5 0 0 1 .5 1H2a.5.5 0 0 1 .485.379L2.89 3H14.5a.5.5 0 0 1 .491.592l-1.5 8A.5.5 0 0 1 13 12H4a.5.5 0 0 1-.491-.408L2.01 3.607 1.61 2H.5a.5.5 0 0 1-.5-.5zM5 12a2 2 0 1 0 0 4 2 2 0 0 0 0-4zm7 0a2 2 0 1 0 0 4 2 2 0 0 0 0-4zm-7 1a1 1 0 1 1 0 2 1 1 0 0 1 0-2zm7 0a1 1 0 1 1 0 2 1 1 0 0 1 0-2z" />
-</svg> CART
+    <svg xmlns="http://www.w3.org/2000/svg" width="50" height="35" fill="white" class="bi bi-cart-fill" viewBox="0 0 16 16">
+        <path d="M0 1.5A.5.5 0 0 1 .5 1H2a.5.5 0 0 1 .485.379L2.89 3H14.5a.5.5 0 0 1 .491.592l-1.5 8A.5.5 0 0 1 13 12H4a.5.5 0 0 1-.491-.408L2.01 3.607 1.61 2H.5a.5.5 0 0 1-.5-.5zM5 12a2 2 0 1 0 0 4 2 2 0 0 0 0-4zm7 0a2 2 0 1 0 0 4 2 2 0 0 0 0-4zm-7 1a1 1 0 1 1 0 2 1 1 0 0 1 0-2zm7 0a1 1 0 1 1 0 2 1 1 0 0 1 0-2z" />
+    </svg> CART
 </h2>
+<link rel="stylesheet" href="http://netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css">
 
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
 
-@foreach (var item in Model)
+<script src="http://netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js"></script>
+<script>
+    function showAlert1() {
+        if ($("#myAlert1").find("div#myAlert21").length == 0) {
+            $("#myAlert1").append("<div class='alert alert-success alert-dismissable' id='myAlert21'> <button type='button' class='close' data-dismiss='alert'  aria-hidden='true'>&times;</button>@ViewBag.borrow</div>");
+        }
+        $("#myAlert1").css("display", "");
+    }
+    function showAlert2() {
+        if ($("#myAlert2").find("div#myAlert22").length == 0) {
+            $("#myAlert2").append("<div class='alert alert-success alert-dismissable' id='myAlert22'> <button type='button' class='close' data-dismiss='alert'  aria-hidden='true'>&times;</button>@ViewBag.returned</div>");
+        }
+        $("#myAlert2").css("display", "");
+    }
+
+</script>
+
+@foreach (var item in Model.Reverse())
 {
     <div class="container">
         <div class="row">
@@ -244,14 +263,15 @@
                                href="@Url.Action("Delete", "Orders", new { id = item.Order_Id })">
                                 Remove
                             </a><br />
-                            <a class="m-t text-righ large fa fa-long-arrow-right"
+                            <a class="m-t text-righ large fa fa-long-arrow-right" onclick='alert( "Your borrow request is sent to the lender. A confirmation mail will be sent to you!")'
                                href="@Url.Action("Borrow", "Orders", new { id = item.Order_Id })">
                                 Borrow
                             </a><br />
+                           
                         }
                         @if (item.Status == Library.Models.BookOrders.StatusType.Borrowed)
                         {
-                            <a class="m-t text-righ large fa fa-long-arrow-right"
+                            <a class="m-t text-righ large fa fa-long-arrow-right" onclick="alert('Your have changed the status to return. A confirmation mail will be sent to you!');"
                                href="@Url.Action("Return", "Orders", new { id = item.Order_Id })">
                                 Return
                             </a><br />

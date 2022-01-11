@@ -19,10 +19,10 @@ namespace Library.Models.BookOrders
         [StringLength(128)]
         public string Member_id { get; set; }
 
-        [Column(TypeName = "date")]
+        [Column(TypeName = "datetime")]
         public DateTime? Borrow_Date { get; set; }
 
-        [Column(TypeName = "date")]
+        [Column(TypeName = "datetime")]
         public DateTime? Due_Date { get; set; }
 
         public StatusType Status { get; set; }

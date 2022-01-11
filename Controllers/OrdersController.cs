@@ -69,6 +69,7 @@ namespace Library.Controllers
             var mem = Users.Get(model.Member_id);
 
             //email to member
+            
             MailMessage mail = new MailMessage();
             SmtpClient SmtpServer = new SmtpClient("smtp.gmail.com");
             mail.From = new MailAddress("yashaswiniravuri@gmail.com");
@@ -98,7 +99,7 @@ namespace Library.Controllers
             System.Net.NetworkCredential("yashaswiniravuri@gmail.com", "pnvnuyjpmwbwqphj");
             SmtpServer.EnableSsl = true;
             SmtpServer.Send(mail);
-
+            
 
             //email to librarian
             MailMessage m = new MailMessage();
@@ -145,6 +146,7 @@ namespace Library.Controllers
             var mem = Users.Get(model.Member_id);
 
             //email to member
+            
             MailMessage mail = new MailMessage();
             SmtpClient SmtpServer = new SmtpClient("smtp.gmail.com");
             mail.From = new MailAddress("yashaswiniravuri@gmail.com");
@@ -174,7 +176,7 @@ namespace Library.Controllers
             System.Net.NetworkCredential("yashaswiniravuri@gmail.com", "pnvnuyjpmwbwqphj");
             SmtpServer.EnableSsl = true;
             SmtpServer.Send(mail);
-
+            
             //email to librarian
             MailMessage m = new MailMessage();
             SmtpClient smtp = new SmtpClient("smtp.gmail.com");
