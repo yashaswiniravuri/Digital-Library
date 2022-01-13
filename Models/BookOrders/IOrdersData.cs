@@ -30,8 +30,6 @@ namespace Library.Models.BookOrders
             MyOrder.Member_id = System.Web.HttpContext.Current.User.Identity.GetUserId();
             MyOrder.Book_Id = bid;
             MyOrder.Librarian_Id=lib;
-            MyOrder.Borrow_Date = DateTime.Now;
-            MyOrder.Due_Date = DateTime.Now.AddDays(60);
             MyOrder.Status=StatusType.To_be_borrowed;
             db.Orders.Add(MyOrder);
             db.SaveChanges();
@@ -61,7 +59,9 @@ namespace Library.Models.BookOrders
 
         public void Borrow(Order o)
         {
-            
+            o.Member_id = System.Web.HttpContext.Current.User.Identity.GetUserId();
+            o.Borrow_Date = DateTime.Now;
+            o.Due_Date = DateTime.Now.AddDays(60);
             o.Status=StatusType.Borrowed;
             var entry = db.Entry(o);
             entry.State = EntityState.Modified;

@@ -236,22 +236,28 @@
                         </div>
                         <div class="medium m-t-xs">
                             <div style="font-style:italic">
-                                Borrow date:
-                                @Html.DisplayFor(modelItem => item.Borrow_Date)
-                            </div>
-                        </div>
-                        <div class="medium m-t-xs">
-                            <div style="font-style:italic">
-                                Due date:
-                                @Html.DisplayFor(modelItem => item.Due_Date)
-                            </div>
-                        </div>
-                        <div class="medium m-t-xs">
-                            <div style="font-style:italic">
                                 Status:
                                 @Html.DisplayFor(modelItem => item.Status)
                             </div>
                         </div>
+                        @if (item.Status == Library.Models.BookOrders.StatusType.Borrowed || item.Status == Library.Models.BookOrders.StatusType.Returned)
+                        {
+                            <div class="medium m-t-xs">
+                                <div style="font-style:italic">
+                                    Borrow date:
+                                    @Html.DisplayFor(modelItem => item.Borrow_Date)
+                                </div>
+                            </div>
+                            <div class="medium m-t-xs">
+                                <div style="font-style:italic">
+                                    Due date:
+                                    @Html.DisplayFor(modelItem => item.Due_Date)
+                                </div>
+                            </div>
+
+                        }
+
+
                         <div class="m-t text-righ large">
                             <br />
                             @Html.ActionLink("Details", "Details", "Orders", new { id = item.Book_Id }, new { @class = "fa fa-long-arrow-right" })
@@ -267,7 +273,7 @@
                                href="@Url.Action("Borrow", "Orders", new { id = item.Order_Id })">
                                 Borrow
                             </a><br />
-                           
+
                         }
                         @if (item.Status == Library.Models.BookOrders.StatusType.Borrowed)
                         {
