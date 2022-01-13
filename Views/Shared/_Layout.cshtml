@@ -30,7 +30,7 @@
                     {
                         <li class="@(ViewContext.RouteData.Values["Action"].ToString() == "Create" ? "active" : "")">@Html.ActionLink("Upload Books", "Create", "BooksMenu")</li>
                         <li class="@(ViewContext.RouteData.Values["Action"].ToString() == "LibGallery" ? "active" : "")">@Html.ActionLink("Gallery", "LibGallery", "BooksMenu")</li>
-                        <li class="@(ViewContext.RouteData.Values["Action"].ToString() == "LibIndex" ? "active" : "")">@Html.ActionLink("Librarian Orders", "LibIndex", "Orders")</li>
+                        <li class="@(ViewContext.RouteData.Values["Action"].ToString() == "LibIndex" ? "active" : "")">@Html.ActionLink("Orders", "LibIndex", "Orders")</li>
                     }
                     @if (User.IsInRole("Member"))
                     {
