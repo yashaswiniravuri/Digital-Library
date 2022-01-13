@@ -281,7 +281,6 @@
     <Content Include="Views\Shared\AuthorizeFailed.cshtml" />
     <Content Include="Views\BooksMenu\Create.cshtml" />
     <Content Include="Views\BooksMenu\BooksGallery.cshtml" />
-    <None Include="Views\BooksMenu\LibGallery.cshtml" />
     <Content Include="Views\Orders\MemIndex.cshtml" />
     <Content Include="Views\Orders\Create.cshtml" />
     <Content Include="Views\Orders\LibIndex.cshtml" />
@@ -289,6 +288,7 @@
     <Content Include="Views\Orders\Borrow.cshtml" />
     <Content Include="Views\Orders\Return.cshtml" />
     <Content Include="Views\Orders\Update.cshtml" />
+    <Content Include="Views\BooksMenu\LibGallery.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

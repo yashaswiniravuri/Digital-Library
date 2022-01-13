@@ -94,6 +94,8 @@ namespace Library.Controllers.Books
             Books.Delete(id);
             return RedirectToAction("LibGallery");
         }
+        [HttpGet]
+        [Authorize(Roles = "Librarian")]
         public ActionResult LibGallery()
         {
             var model = Books.GetLib();
