@@ -1,4 +1,5 @@
 # Digital-Library
+Deployed on Microsoft Azure - http://bayds.azurewebsites.net/
 Books At Your Doorstep is a full-stack scalable web application that aims to enable users to add book details with the number of copies to the portal and allow users to borrow books from the portal. 
 
 Features:
